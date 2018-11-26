@@ -45,8 +45,8 @@ public class ExerciseOne {
         int numE = 0;
         int total = 0;
 
-        // TODO Read input2.txt and print the total number of characters, and the number of e and E characters.
-        // TODO Use a BufferedReader.
+        // TODOne Read input2.txt and print the total number of characters, and the number of e and E characters.
+        // TODOne Use a BufferedReader.
         File theFile = new File("input2.txt");
         try(BufferedReader bF= new BufferedReader(new FileReader(theFile))){
             String line = null;
