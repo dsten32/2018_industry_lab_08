@@ -40,7 +40,40 @@ public class MovieReader {
     protected Movie[] loadMovies(String fileName) {
 
         // TODO Implement this method
-        try(DataInputStream read = new DataInputStream(new FileInputStream(new File(fileName+".txt")))){
+        try(DataInputStream read = new DataInputStream(new FileInputStream(new File(fileName+".txt")))) {
+
+
+            byte count = read.readByte();
+            Movie[] films = new Movie[count];
+            for (int i = 0; i < films.length; i++) {
+            byte[] bytes = new byte[read.readByte()];
+            read.read(bytes);
+            String name = "";
+            for (byte bt : bytes) {
+                name += (char) bt;
+            }
+            bytes = new byte[read.readByte()];
+            read.read(bytes);
+            String year = "";
+            for (byte bt : bytes) {
+                year += (char) bt;
+            }
+            bytes = new byte[read.readByte()];
+            read.read(bytes);
+            String length = "";
+            for (byte bt : bytes) {
+                length += (char) bt;
+            }
+            bytes = new byte[read.readByte()];
+            read.read(bytes);
+            String director = "";
+            for (byte bt : bytes) {
+                director += (char) bt;
+            }
+
+            films[i]= new Movie(name, Integer.parseInt(year), Integer.parseInt(length), director);
+        }
+        return films;
 
         }catch (FileNotFoundException e){
             System.out.println("fnferr"+e);

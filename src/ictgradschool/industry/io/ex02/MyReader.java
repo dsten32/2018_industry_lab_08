@@ -8,8 +8,8 @@ public class MyReader {
 
     public void start() {
 
-        // TODOne Prompt the user for a file name, then read and print out all the text in that file.
-        // TODOne Use a BufferedReader.
+        // TODO Prompt the user for a file name, then read and print out all the text in that file.
+        // TODO Use a BufferedReader.
 
         System.out.print("Enter a file name: ");
         String fileName = Keyboard.readInput();
