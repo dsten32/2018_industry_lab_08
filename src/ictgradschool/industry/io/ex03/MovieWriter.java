@@ -2,10 +2,7 @@ package ictgradschool.industry.io.ex03;
 
 import ictgradschool.Keyboard;
 
-import java.io.BufferedWriter;
-import java.io.FileNotFoundException;
-import java.io.FileWriter;
-import java.io.IOException;
+import java.io.*;
 
 
 /**
@@ -33,20 +30,45 @@ public class MovieWriter {
      */
     protected void saveMovies(String fileName, Movie[] films) {
 
-        // TODOne Implement this method
-        try(BufferedWriter writer=new BufferedWriter(new FileWriter(fileName+".txt"))){
-            int i=0;
-            while (films[i]!=null && i<films.length-1){
-                writer.write(films[i].toString());
-                writer.newLine();
-                i++;
+        // TODO Implement this method
+        try(DataOutputStream writer=new DataOutputStream(new FileOutputStream(fileName+".txt"))){
+            writer.write(films.length);
+
+            for (int i = 0; i < films.length; i++) {
+                byte[] bytes = films[i].getName().getBytes();
+                writer.write(bytes.length);
+                writer.write(bytes);
+                bytes = Integer.toString(films[i].getYear()).getBytes();
+                writer.write(bytes.length);
+                writer.write(bytes);
+                bytes = Integer.toString(films[i].getLengthInMinutes()).getBytes();
+                writer.write(bytes.length);
+                writer.write(bytes);
+                bytes = films[i].getDirector().getBytes();
+                writer.write(bytes.length);
+                writer.write(bytes);
             }
-            writer.write("Number of films = " +i);
+
         }catch (FileNotFoundException e){
             System.out.println("FnF err "+e);
         } catch (IOException e){
             System.out.println("IO err "+e);
         }
+
+
+//        try(BufferedWriter writer=new BufferedWriter(new FileWriter(fileName+".txt"))){
+//            int i=0;
+//            while (films[i]!=null && i<films.length-1){
+//                writer.write(films[i].toString());
+//                writer.newLine();
+//                i++;
+//            }
+//            writer.write("Number of films = " +i);
+//        }catch (FileNotFoundException e){
+//            System.out.println("FnF err "+e);
+//        } catch (IOException e){
+//            System.out.println("IO err "+e);
+//        }
 
         System.out.println("Movies saved successfully to " + fileName + "!");
     }

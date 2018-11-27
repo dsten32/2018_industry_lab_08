@@ -2,6 +2,8 @@ package ictgradschool.industry.io.ex03;
 
 import ictgradschool.Keyboard;
 
+import java.io.*;
+
 /**
  * Created by anhyd on 20/03/2017.
  */
@@ -38,6 +40,15 @@ public class MovieReader {
     protected Movie[] loadMovies(String fileName) {
 
         // TODO Implement this method
+        try(DataInputStream read = new DataInputStream(new FileInputStream(new File(fileName+".txt")))){
+
+        }catch (FileNotFoundException e){
+            System.out.println("fnferr"+e);
+        }catch (IOException e){
+            System.out.println("ioerr"+e);
+        }
+
+
 
         System.out.println("Movies loaded successfully from " + fileName + "!");
         return null;
