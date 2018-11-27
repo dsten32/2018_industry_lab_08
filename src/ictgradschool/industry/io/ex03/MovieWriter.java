@@ -2,11 +2,18 @@ package ictgradschool.industry.io.ex03;
 
 import ictgradschool.Keyboard;
 
+import java.io.BufferedWriter;
+import java.io.FileNotFoundException;
+import java.io.FileWriter;
+import java.io.IOException;
+
 
 /**
  * Created by anhyd on 20/03/2017.
  */
 public class MovieWriter {
+
+
 
     public void start() {
 
@@ -27,6 +34,21 @@ public class MovieWriter {
     protected void saveMovies(String fileName, Movie[] films) {
 
         // TODO Implement this method
+        try(BufferedWriter writer=new BufferedWriter(new FileWriter(fileName+".txt"))){
+            int i=0;
+            while (films[i]!=null && i<films.length-1){
+                writer.write(films[i].toString());
+                writer.newLine();
+                i++;
+            }
+
+
+
+        }catch (FileNotFoundException e){
+            System.out.println("FnF err "+e);
+        } catch (IOException e){
+            System.out.println("IO err "+e);
+        }
 
         System.out.println("Movies saved successfully to " + fileName + "!");
     }
