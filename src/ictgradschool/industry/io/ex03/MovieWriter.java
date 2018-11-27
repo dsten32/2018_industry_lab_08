@@ -33,7 +33,7 @@ public class MovieWriter {
      */
     protected void saveMovies(String fileName, Movie[] films) {
 
-        // TODO Implement this method
+        // TODOne Implement this method
         try(BufferedWriter writer=new BufferedWriter(new FileWriter(fileName+".txt"))){
             int i=0;
             while (films[i]!=null && i<films.length-1){
@@ -41,9 +41,7 @@ public class MovieWriter {
                 writer.newLine();
                 i++;
             }
-
-
-
+            writer.write("Number of films = " +i);
         }catch (FileNotFoundException e){
             System.out.println("FnF err "+e);
         } catch (IOException e){
