@@ -23,35 +23,15 @@ public class Ex4MovieReader extends MovieReader {
             byte count = read.nextByte();
             Movie[] films = new Movie[count];
             while (read.hasNextLine()){
-
-            }
-            for (int i = 0; i < films.length; i++) {
-                byte[] bytes = new byte[read.readByte()];
-                read.read(bytes);
-                String name = "";
-                for (byte bt : bytes) {
-                    name += (char) bt;
+                String newline = read.nextLine();
+                String[] movieData=newline.split(",");
+                String movieName=movieData[0];
+                int movieYear=Integer.parseInt(movieData[1]);
+                int movieLength=Integer.parseInt(movieData[2]);
+                String movieDirector=movieData[3];
+                for (int i = 0; i < films.length; i++) {
+                    films[i]= new Movie(movieName, movieYear, movieLength, movieDirector);
                 }
-                bytes = new byte[read.readByte()];
-                read.read(bytes);
-                String year = "";
-                for (byte bt : bytes) {
-                    year += (char) bt;
-                }
-                bytes = new byte[read.readByte()];
-                read.read(bytes);
-                String length = "";
-                for (byte bt : bytes) {
-                    length += (char) bt;
-                }
-                bytes = new byte[read.readByte()];
-                read.read(bytes);
-                String director = "";
-                for (byte bt : bytes) {
-                    director += (char) bt;
-                }
-
-                films[i]= new Movie(name, Integer.parseInt(year), Integer.parseInt(length), director);
             }
             return films;
 
