@@ -11,8 +11,8 @@ public class MyScanner {
 
     public void start() {
 
-        // TODO Prompt the user for a file name, then read and print out all the text in that file.
-        // TODO Use a Scanner.
+        // TODOne Prompt the user for a file name, then read and print out all the text in that file.
+        // TODOne Use a Scanner.
         System.out.print("Enter a file name: ");
         String fileName = Keyboard.readInput();
 
