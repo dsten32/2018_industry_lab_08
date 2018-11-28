@@ -16,7 +16,7 @@ public class Ex4MovieWriter extends MovieWriter {
     @Override
     protected void saveMovies(String fileName, Movie[] films) {
 
-        // TODO Implement this with a PrintWriter
+        // TODOne Implement this with a PrintWriter
         try (PrintWriter print=new PrintWriter(new FileWriter(fileName+".txt"))){
 
 
@@ -33,18 +33,6 @@ public class Ex4MovieWriter extends MovieWriter {
                 movieInfo.append(films[i].getDirector());
                 movieInfo.append("\n");
                 print.write(movieInfo.toString());
-//                byte[] bytes = films[i].getName().getBytes();
-//                writer.write(bytes.length);
-//                writer.write(bytes);
-//                bytes = Integer.toString(films[i].getYear()).getBytes();
-//                writer.write(bytes.length);
-//                writer.write(bytes);
-//                bytes = Integer.toString(films[i].getLengthInMinutes()).getBytes();
-//                writer.write(bytes.length);
-//                writer.write(bytes);
-//                bytes = films[i].getDirector().getBytes();
-//                writer.write(bytes.length);
-//                writer.write(bytes);
             }
 
         }catch (FileNotFoundException e){
