@@ -80,9 +80,6 @@ public class MovieReader {
         }catch (IOException e){
             System.out.println("ioerr"+e);
         }
-
-
-
         System.out.println("Movies loaded successfully from " + fileName + "!");
         return null;
 

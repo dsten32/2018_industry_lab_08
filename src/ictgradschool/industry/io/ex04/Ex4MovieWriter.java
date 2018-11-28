@@ -19,8 +19,7 @@ public class Ex4MovieWriter extends MovieWriter {
         // TODOne Implement this with a PrintWriter
         try (PrintWriter print=new PrintWriter(new FileWriter(fileName+".txt"))){
 
-
-
+            print.write(films.length+"\n");
             for (int i = 0; i < films.length; i++) {
                 StringBuffer movieInfo=new StringBuffer("");
 
