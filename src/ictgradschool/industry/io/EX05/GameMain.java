@@ -25,10 +25,14 @@ public class GameMain {
             }
         }
 
+        test(playerCode,computerCode);
 
+//        test(playerCode,computerCode,new CompareGuess());
 
         System.out.println("---");
         System.out.println("You Guess: "+playerCode);
+
+
 //        System.out.println("Me Guess: "+computerCode);
 
         // add in testing for comparing player guess to computer code
@@ -38,6 +42,18 @@ public class GameMain {
         System.out.println("Result: "+"haven't figured this part out yet");
 
 
+
+    }
+
+    private void test(String guess, String code){
+        int cow = 0,bull=0;
+        for(int i=0;i<guess.length();i++) {
+            for (int j = 0; j < code.length(); j++) {
+                if (guess.charAt(i)==code.charAt(j)){
+
+                }
+            }
+        }
 
     }
 
