@@ -3,17 +3,20 @@ package ictgradschool.industry.io.EX05;
 import java.util.Scanner;
 
 public class GameMain {
-    int playerCode, computerCode;
+    String playerCode, computerCode;
 
 
     private void start() {
         Scanner sc = new Scanner(System.in);
+        playerCode="";
+        // generate computer code
 
-        playerCode=0;
-        while (playerCode==0 || playerCode<999 || playerCode>9999) {
+        computerCode=compCode();
+
+        while (playerCode.length()<=3||playerCode.length()>=5) {
             try {
                 System.out.println("Please enter your secret code:");
-                playerCode = Integer.parseInt(sc.next());
+                playerCode = sc.next();
                 checkEntry(playerCode);
             } catch (NumberFormatException e) {
                 System.out.println("nope, not a num");
@@ -22,22 +25,48 @@ public class GameMain {
             }
         }
 
+
+
         System.out.println("---");
         System.out.println("You Guess: "+playerCode);
+//        System.out.println("Me Guess: "+computerCode);
+
+        // add in testing for comparing player guess to computer code
 
 
-        System.out.println("Result: ");
+
+        System.out.println("Result: "+"haven't figured this part out yet");
 
 
 
     }
 
-private void checkEntry(int guess) throws InvalidEntryException{
+    private void checkEntry(String guess) throws InvalidEntryException{
 
-if (guess<999 || guess>9999){
-    throw new InvalidEntryException("wrong num of characters...");
-}
-}
+        if (guess.length()<4 || guess.length()>4){
+            throw new InvalidEntryException();
+        }
+    }
+
+    private String compCode(){
+        char a ='0',b='0',c='0',d='0';
+
+        while (a==b||a==c ||a==d||b==c||b==d||c==d){
+            a =((char)((Math.random()*10)+48));
+            b =((char)((Math.random()*10)+48));
+            c =((char)((Math.random()*10)+48));
+            d =((char)((Math.random()*10)+48));
+        }
+
+//        char a =((char)((Math.random()*10)+48));
+//        char b = ((char)((Math.random()*10)+48));
+//        char c = ((char)((Math.random()*10)+48));
+//        char d = ((char)((Math.random()*10)+48));
+        String code = ""+a+b+c+d;
+//        int code = Integer.parseInt(temp);
+        return code;
+    }
+
 
     public static void main(String[] args){
         GameMain gm = new GameMain();
