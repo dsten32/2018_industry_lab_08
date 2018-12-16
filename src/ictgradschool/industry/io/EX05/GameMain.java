@@ -17,9 +17,6 @@ public class GameMain {
         playerCode = playerEntry("Please enter your secret code:\n");
 
         while (num_guesses<=7) {
-//            System.out.print("--- \nYou Guess:");
-
-
             playerGuess=playerEntry("--- \nYou Guess:");
 
             test(playerGuess, computerCode);
@@ -41,13 +38,9 @@ public class GameMain {
                 System.out.print("Computer wins! :P");
                 return;
             }
-
             num_guesses++;
         }
-
         System.out.print("\nYou're out of guesses, bye.");
-
-
     }
 
     private void test(String guess, String code){
@@ -63,7 +56,6 @@ public class GameMain {
                 temp=temp.replace(Character.toString(guess.charAt(i)),"^");
             }
         }
-
         cow-=bull;
 
         if(bull==1){
@@ -77,11 +69,8 @@ public class GameMain {
             cowPlural="cows";
         }
     }
-    //            for (int j = 0; j < code.length(); j++) {
-//                if (guess.charAt(i)==code.charAt(j)){
-//
-//                }
-//            }
+
+    //get the player entry, covers the players secret code as well as guesses.
     private String playerEntry(String entryText){
         String entry="";
         while (entry.length()<=3||entry.length()>=5) {
@@ -101,16 +90,17 @@ public class GameMain {
 
 
     private void checkEntry(String guess) throws InvalidEntryException{
-
         if (guess.length()<4 || guess.length()>4){
             throw new InvalidEntryException();
         }
     }
 
+    //did this round win?
     private boolean checkWin(){
         return (bull==4);
     }
 
+    //generate the computer's secret code.
     private String compCode(){
         char a ='0',b='0',c='0',d='0';
 
@@ -121,12 +111,8 @@ public class GameMain {
             d =((char)((Math.random()*10)+48));
         }
 
-//        char a =((char)((Math.random()*10)+48));
-//        char b = ((char)((Math.random()*10)+48));
-//        char c = ((char)((Math.random()*10)+48));
-//        char d = ((char)((Math.random()*10)+48));
         String code = ""+a+b+c+d;
-//        int code = Integer.parseInt(temp);
+
         return code;
     }
 
