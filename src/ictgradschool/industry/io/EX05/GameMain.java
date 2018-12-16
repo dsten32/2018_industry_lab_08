@@ -1,5 +1,7 @@
 package ictgradschool.industry.io.EX05;
 
+import ictgradschool.industry.io.ex02.MyReader;
+
 import java.util.Scanner;
 
 public class GameMain {
@@ -8,15 +10,15 @@ public class GameMain {
     Scanner sc = new Scanner(System.in);
 
     private void start() {
-
         playerCode="";
-        // generate computer code
-
         computerCode=compCode();
+
+        GameReader gr = new GameReader();
+        gr.start();
 
         playerCode = playerEntry("Please enter your secret code:\n");
 
-        while (num_guesses<=7) {
+        while (num_guesses<7) {
             playerGuess=playerEntry("--- \nYou Guess:");
 
             test(playerGuess, computerCode);
@@ -28,6 +30,7 @@ public class GameMain {
                 System.out.print("You win! :)");
                 return;
             }
+
             System.out.println();
             computerGuess=compCode();
             test(computerGuess,playerCode);
