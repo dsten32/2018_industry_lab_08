@@ -14,26 +14,18 @@ public class GameMain {
 
         computerCode=compCode();
 
-        System.out.println("Please enter your secret code:");
-
-
-        playerCode = playerEntry();
-
-
-
-
+        playerCode = playerEntry("Please enter your secret code:\n");
 
         while (num_guesses<=7) {
-            System.out.print("--- \nYou Guess:");
+//            System.out.print("--- \nYou Guess:");
 
 
-            playerGuess=playerEntry();
+            playerGuess=playerEntry("--- \nYou Guess:");
 
-//            playerGuess=sc.next();
             test(playerGuess, computerCode);
 
             System.out.println("Result: " + bull + " " + bullPlural + " and " + cow + " " + cowPlural);
-            System.out.print(computerCode);
+            System.out.println("\nsshhhh, this is what the computer's code is... "+computerCode);
 
             if(checkWin()){
                 System.out.print("You win! :)");
@@ -90,10 +82,11 @@ public class GameMain {
 //
 //                }
 //            }
-    private String playerEntry(){
+    private String playerEntry(String entryText){
         String entry="";
         while (entry.length()<=3||entry.length()>=5) {
             try {
+                System.out.print(entryText);
                 entry = sc.next();
                 Integer.parseInt(String.valueOf(entry));
                 checkEntry(entry);
