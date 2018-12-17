@@ -2,24 +2,35 @@ package ictgradschool.industry.io.EX05;
 
 import ictgradschool.industry.io.ex02.MyReader;
 
+import java.util.List;
 import java.util.Scanner;
 
 public class GameMain {
     String playerGuess,playerCode, computerGuess,computerCode,bullPlural,cowPlural;
     int cow,bull,num_guesses=0;
     Scanner sc = new Scanner(System.in);
+    List<String> guessList;
 
     private void start() {
         playerCode="";
         computerCode=compCode();
 
+
         GameReader gr = new GameReader();
-        gr.start();
+
+        guessList=gr.start();
+        System.out.print(guessList);
 
         playerCode = playerEntry("Please enter your secret code:\n");
 
         while (num_guesses<7) {
-            playerGuess=playerEntry("--- \nYou Guess:");
+
+            if(guessList.size()!=0 && guessList.size()>num_guesses) {
+                    playerGuess = guessList.get(num_guesses);
+                    System.out.println("---\nYou Guess: " + playerGuess);
+            } else{
+                playerGuess = playerEntry("---\nYou Guess:");
+            }
 
             test(playerGuess, computerCode);
 
