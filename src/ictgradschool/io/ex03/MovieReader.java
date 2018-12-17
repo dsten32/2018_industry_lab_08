@@ -10,15 +10,21 @@ import java.io.*;
 public class MovieReader {
 
     public void start() {
-
+        Movie[] films;
 
         // Get a file name from the user
         System.out.print("Enter a file name: ");
         String fileName = Keyboard.readInput();
 
-        // Load the movie data
-        Movie[] films = loadMovies(fileName);
+        System.out.print("is this file serialised? (y/n): ");
+        String anser = Keyboard.readInput();
 
+        // Load the movie data
+        if (anser.equals("y")|| anser.equals("Y")) {
+            films = loadSerialsiedMovies(fileName);
+        }else {
+            films = loadMovies(fileName);
+        }
         // Do some stuff with the data to check that its working
         printMoviesArray(films);
         Movie mostRecentMovie = getMostRecentMovie(films);
@@ -37,6 +43,7 @@ public class MovieReader {
      * @param fileName
      * @return
      */
+    @SuppressWarnings("Duplicates")
     protected Movie[] loadMovies(String fileName) {
 
         // TODOne Implement this method
@@ -82,7 +89,20 @@ public class MovieReader {
         }
         System.out.println("Movies loaded successfully from " + fileName + "!");
         return null;
+    }
 
+    private Movie[] loadSerialsiedMovies(String filename){
+        try (ObjectInputStream in = new ObjectInputStream(new FileInputStream(filename))){
+
+            return (Movie[]) in.readObject();
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+        return null;
     }
 
     private void printMoviesArray(Movie[] films) {

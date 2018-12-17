@@ -2,10 +2,7 @@ package ictgradschool.io.ex03;
 
 import ictgradschool.Keyboard;
 
-import java.io.DataOutputStream;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.IOException;
+import java.io.*;
 
 
 /**
@@ -17,7 +14,7 @@ public class MovieWriter {
     public void start() {
 //        ask if they want to write via serialisation..
         System.out.print("You like wanna serialise? (y/n)");
-        String anser= Keyboard.readInput();
+        String anser = Keyboard.readInput();
 
 
         // Get a file name from the user
@@ -26,16 +23,18 @@ public class MovieWriter {
 
         // Create and fill Movies array
         Movie[] films = getMovieData();
-        if(anser.equals("y") || anser.equals("Y")){
+        if (anser.equals("y") || anser.equals("Y")) {
             serialiseMovies(fileName, films);
-        }else{
-        // Saves the movies
-        saveMovies(fileName, films);}
+        } else {
+            // Saves the movies
+            saveMovies(fileName, films);
+        }
     }
 
     /**
      * Saves the movies to the given file.
      */
+    @SuppressWarnings("Duplicates")
     protected void saveMovies(String fileName, Movie[] films) {
 
         // TODOne Implement this method
@@ -82,13 +81,21 @@ public class MovieWriter {
     }
 
 
-    public void serialiseMovies(String fileName, Movie[] films){
+    public void serialiseMovies(String fileName, Movie[] films) {
+        try (ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream(fileName))) {
 
+            out.writeObject(films);
+            System.out.print("did it work?");
+
+        } catch (IOException e) {
+            System.out.print("there was errorness");
+        }
     }
 
     /**
      * Returns an array with a bunch of hard-coded movie data
      */
+    @SuppressWarnings("Duplicates")
     private Movie[] getMovieData() {
         Movie[] films = new Movie[19];
         films[17] = new Movie("The Intouchables", 2011, 112, "Olivier Nakache and Eric Toledano");
@@ -112,7 +119,6 @@ public class MovieWriter {
         films[18] = new Movie("Searching for Sugar Man", 2012, 86, "Malik Bendjelloul");
         return films;
     }
-
 
 
     public static void main(String[] args) {
