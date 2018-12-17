@@ -3,7 +3,7 @@ package ictgradschool.io.ex04;
 import ictgradschool.io.ex03.Movie;
 import ictgradschool.io.ex03.MovieReader;
 
-import java.io.File;
+import java.io.*;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.Scanner;
@@ -16,7 +16,7 @@ public class Ex4MovieReader extends MovieReader {
     @Override
     protected Movie[] loadMovies(String fileName) {
 
-        // TODO Implement this with a Scanner
+        // TODOne Implement this with a Scanner
         try(Scanner read = new Scanner(new File(fileName+".txt"))) {
             String movieName;
             int movieYear;

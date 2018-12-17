@@ -15,6 +15,10 @@ public class MovieWriter {
 
 
     public void start() {
+//        ask if they want to write via serialisation..
+        System.out.print("You like wanna serialise? (y/n)");
+        String anser= Keyboard.readInput();
+
 
         // Get a file name from the user
         System.out.print("Enter a file name: ");
@@ -22,9 +26,11 @@ public class MovieWriter {
 
         // Create and fill Movies array
         Movie[] films = getMovieData();
-
+        if(anser.equals("y") || anser.equals("Y")){
+            serialiseMovies(fileName, films);
+        }else{
         // Saves the movies
-        saveMovies(fileName, films);
+        saveMovies(fileName, films);}
     }
 
     /**
@@ -75,6 +81,11 @@ public class MovieWriter {
         System.out.println("Movies saved successfully to " + fileName + "!");
     }
 
+
+    public void serialiseMovies(String fileName, Movie[] films){
+
+    }
+
     /**
      * Returns an array with a bunch of hard-coded movie data
      */
@@ -101,6 +112,8 @@ public class MovieWriter {
         films[18] = new Movie("Searching for Sugar Man", 2012, 86, "Malik Bendjelloul");
         return films;
     }
+
+
 
     public static void main(String[] args) {
         new MovieWriter().start();
