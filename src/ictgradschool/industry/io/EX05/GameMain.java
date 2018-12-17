@@ -6,7 +6,7 @@ import java.util.List;
 import java.util.Scanner;
 
 public class GameMain {
-    String playerGuess,playerCode, computerGuess,computerCode,bullPlural,cowPlural;
+    String playerGuess,playerCode, computerGuess,computerCode,bullPlural,cowPlural,toText;
     int cow,bull,num_guesses=0;
     Scanner sc = new Scanner(System.in);
     List<String> guessList;
@@ -16,6 +16,7 @@ public class GameMain {
         computerCode=compCode();
 
         System.out.print("do you want to enter guesses from a file..? (y/n)");
+
         String filit=sc.next();
         if(filit.equals("y") || filit.equals("Y")){
             GameReader gr = new GameReader();
@@ -24,39 +25,49 @@ public class GameMain {
         }
 
         playerCode = playerEntry("Please enter your secret code:\n");
+        toText+="Please enter your secret code:\n"+playerCode;
 
         while (num_guesses<7) {
 
-            if(guessList.size()!=0 && guessList.size()>num_guesses) {
+            if(guessList!=null && guessList.size()>num_guesses) {
                     playerGuess = guessList.get(num_guesses);
                     System.out.print("---\nYou Guess: " + playerGuess+"\n");
+                toText+="---\nYou Guess: " + playerGuess+"\n";
             } else{
                 playerGuess = playerEntry("---\nYou Guess:");
+                toText+="---\nYou Guess: " + playerGuess+"\n";
             }
 
             test(playerGuess, computerCode);
 
             System.out.print("Result: " + bull + " " + bullPlural + " and " + cow + " " + cowPlural+"\n");
+            toText+="Result: " + bull + " " + bullPlural + " and " + cow + " " + cowPlural+"\n";
             System.out.print("\nsshhhh, this is what the computer's code is... "+computerCode+"\n");
 
             if(checkWin()){
                 System.out.print("You win! :)");
+                toText+="You win! :)";
                 return;
             }
 
             System.out.print("\n");
+            toText+="\n";
             computerGuess=compCode();
             test(computerGuess,playerCode);
             System.out.print("Computer Guess: "+computerGuess+"\n");
+            toText+="Computer Guess: "+computerGuess+"\n";
             System.out.print("Result: " + bull + " " + bullPlural + " and " + cow + " " + cowPlural+"\n");
+            toText+="Result: " + bull + " " + bullPlural + " and " + cow + " " + cowPlural+"\n";
 
             if(checkWin()){
                 System.out.print("Computer wins! :P");
+                toText+="Computer wins! :P";
                 return;
             }
             num_guesses++;
         }
         System.out.print("\nYou're out of guesses, bye.");
+        toText+="\nYou're out of guesses, bye.";
     }
 
     private void test(String guess, String code){
