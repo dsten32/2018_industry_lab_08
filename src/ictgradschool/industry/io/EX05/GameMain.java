@@ -25,23 +25,23 @@ public class GameMain {
         }
 
         playerCode = playerEntry("Please enter your secret code:\n");
-        toText+="Please enter your secret code:\n"+playerCode;
+        toText="Please enter your secret code:\r\n"+playerCode+"\r\n";
 
         while (num_guesses<7) {
 
             if(guessList!=null && guessList.size()>num_guesses) {
                     playerGuess = guessList.get(num_guesses);
                     System.out.print("---\nYou Guess: " + playerGuess+"\n");
-                toText+="---\nYou Guess: " + playerGuess+"\n";
+                toText+="---\r\nYou Guess: " + playerGuess+"\r\n";
             } else{
                 playerGuess = playerEntry("---\nYou Guess:");
-                toText+="---\nYou Guess: " + playerGuess+"\n";
+                toText+="---\r\nYou Guess: " + playerGuess+"\r\n";
             }
 
             test(playerGuess, computerCode);
 
             System.out.print("Result: " + bull + " " + bullPlural + " and " + cow + " " + cowPlural+"\n");
-            toText+="Result: " + bull + " " + bullPlural + " and " + cow + " " + cowPlural+"\n";
+            toText+="Result: " + bull + " " + bullPlural + " and " + cow + " " + cowPlural+"\r\n";
             System.out.print("\nsshhhh, this is what the computer's code is... "+computerCode+"\n");
 
             if(checkWin()){
@@ -51,13 +51,13 @@ public class GameMain {
             }
 
             System.out.print("\n");
-            toText+="\n";
+            toText+="\r\n";
             computerGuess=compCode();
             test(computerGuess,playerCode);
             System.out.print("Computer Guess: "+computerGuess+"\n");
-            toText+="Computer Guess: "+computerGuess+"\n";
+            toText+="Computer Guess: "+computerGuess+"\r\n";
             System.out.print("Result: " + bull + " " + bullPlural + " and " + cow + " " + cowPlural+"\n");
-            toText+="Result: " + bull + " " + bullPlural + " and " + cow + " " + cowPlural+"\n";
+            toText+="Result: " + bull + " " + bullPlural + " and " + cow + " " + cowPlural+"\r\n";
 
             if(checkWin()){
                 System.out.print("Computer wins! :P");
@@ -67,7 +67,14 @@ public class GameMain {
             num_guesses++;
         }
         System.out.print("\nYou're out of guesses, bye.");
-        toText+="\nYou're out of guesses, bye.";
+        toText+="\r\nYou're out of guesses, bye.";
+
+        System.out.print("\nDo you wish to write this game to a file? ");
+        filit=sc.next();
+        if(filit.equals("y") || filit.equals("Y")){
+        GameWriter gw = new GameWriter();
+        gw.start(toText);
+        }
     }
 
     private void test(String guess, String code){
