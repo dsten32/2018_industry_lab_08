@@ -15,11 +15,13 @@ public class GameMain {
         playerCode="";
         computerCode=compCode();
 
-
-        GameReader gr = new GameReader();
-
-        guessList=gr.start();
-        System.out.print(guessList);
+        System.out.print("do you want to enter guesses from a file..? (y/n)");
+        String filit=sc.next();
+        if(filit.equals("y") || filit.equals("Y")){
+            GameReader gr = new GameReader();
+            guessList=gr.start();
+//            System.out.print(guessList);
+        }
 
         playerCode = playerEntry("Please enter your secret code:\n");
 
@@ -27,26 +29,26 @@ public class GameMain {
 
             if(guessList.size()!=0 && guessList.size()>num_guesses) {
                     playerGuess = guessList.get(num_guesses);
-                    System.out.println("---\nYou Guess: " + playerGuess);
+                    System.out.print("---\nYou Guess: " + playerGuess+"\n");
             } else{
                 playerGuess = playerEntry("---\nYou Guess:");
             }
 
             test(playerGuess, computerCode);
 
-            System.out.println("Result: " + bull + " " + bullPlural + " and " + cow + " " + cowPlural);
-            System.out.println("\nsshhhh, this is what the computer's code is... "+computerCode);
+            System.out.print("Result: " + bull + " " + bullPlural + " and " + cow + " " + cowPlural+"\n");
+            System.out.print("\nsshhhh, this is what the computer's code is... "+computerCode+"\n");
 
             if(checkWin()){
                 System.out.print("You win! :)");
                 return;
             }
 
-            System.out.println();
+            System.out.print("\n");
             computerGuess=compCode();
             test(computerGuess,playerCode);
-            System.out.println("Computer Guess: "+computerGuess);
-            System.out.println("Result: " + bull + " " + bullPlural + " and " + cow + " " + cowPlural);
+            System.out.print("Computer Guess: "+computerGuess+"\n");
+            System.out.print("Result: " + bull + " " + bullPlural + " and " + cow + " " + cowPlural+"\n");
 
             if(checkWin()){
                 System.out.print("Computer wins! :P");
@@ -94,9 +96,9 @@ public class GameMain {
                 Integer.parseInt(String.valueOf(entry));
                 checkEntry(entry);
             } catch (NumberFormatException e) {
-                System.out.println("nope, not a num");
+                System.out.print("nope, not a num\n");
             } catch (InvalidEntryException e) {
-                System.out.println("ugh, wrong number of digits..");
+                System.out.print("ugh, wrong number of digits..\n");
             }
         }
         return entry;
